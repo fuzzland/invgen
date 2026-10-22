@@ -36,7 +36,11 @@ async function initializeWeaviateSchema() {
     const client: WeaviateClient = weaviate.client({
         scheme: 'http',
         host: 'http://localhost:9400',  // I'm using local docker weaviate client
-        headers: { 'X-OpenAI-Api-Key': process.env.OPENAI_API_KEY },  // Replace with your inference API key
+        headers: {
+          // Attributes this traffic to invgen (read by Weaviate >= 1.38). package.json has no version, hence "unknown".
+          'X-Weaviate-Client-Integration': 'invgen/unknown',
+          'X-OpenAI-Api-Key': process.env.OPENAI_API_KEY,  // Replace with your inference API key
+        },
       });
       
     if (await client.schema.exists(indexName)) {
