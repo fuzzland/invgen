@@ -42,6 +42,7 @@ First set up an RAG database as docker container. Notice that this container wil
 cd weaviate
 docker compose up -d
 ```
+If `weaviate/data` already holds a database created by an older Weaviate (1.24 from this compose file, or 1.25 from `setup.sh`), note that Weaviate only supports upgrading one minor version at a time. Either step through the intermediate minor releases, or delete `weaviate/data` and fill the database again (step 2).
 #### 2. Fill RAG Database
 You can create your own invariant dataset by putting Foundry projects into `invariant_dataset` folder or use the one we have collected. To use our dataset, run
 ```bash

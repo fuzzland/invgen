@@ -47,6 +47,7 @@ async function initializeWeaviateSchema() {
               description: 'SC contract to invariant list information',  // description of the class
               vectorizer: 'text2vec-openai',
               moduleConfig: {
+                  'text2vec-openai': { model: 'ada' },  // Match the query-side OpenAIEmbeddings default (text-embedding-ada-002)
                   'generative-openai': {}  // Set `generative-openai` as the generative module
               },
               properties: [
